@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Furniture Offers & Client Feedback</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      color: #ffff;
+    }
+
+    .containers {
+       margin-top: 100px; 
+       margin-bottom: 100px;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-color: #b78b5c;
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 6px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1030;
+    }
+
+    /* Navbar offset due to fixed top bar */
+    .navbar {
+      margin-top: 40px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background-color: #f8f5f0;
+      color: black;
+      padding: 100px 0;
+      border-radius: 0px;
+    }
+
+    .hero-circle {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-circle .circle-bg {
+      position: absolute;
+      background-color: #e4d1ba;
+      border-radius: 50%;
+      width: 350px;
+      height: 350px;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+      
+    }
+
+    .newArrival{
+        background-color: #f3e8d7;
+        color: #b78b5c;
+        font-weight: bold;
+        padding: 8px 10px;
+    }
+
+    /* Buttons */
+    .btn-brown {
+      background-color: #b78b5c;
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 0px;
+      border: 1px solid #b78b5c;
+    }
+
+    .btn-brown:hover {
+      border: 1px solid #b78b5c;
+      color: #b78b5c;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 0px;
+    }
+
+    .btn-outline-brown {
+      border: 1px solid #b78b5c;
+      color: #b78b5c;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 0px;
+    }
+
+    .btn-outline-brown:hover {
+      background-color: #b78b5c;
+      border: 1px solid #b78b5c;
+      color: #fff;
+      border-radius: 0px;
+    }
+
+    .d-block {
+      color: #0000;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+    background-size: 100% 100%;
+    }
+
+    .carousel-item {
+    transition: transform 0.6s ease;
+    padding: 0 15px;
+    }
+
+    .carousel-inner {
+    overflow: hidden;
+    }
+
+    .carousel .row {
+    margin: 0; /* pastikan tidak ada margin horizontal berlebih */
+    }
+
+        /* Top offers section */
+        .offer-card {
+            position: relative;
+            color: white;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+        }
+        .offer-card .hot-deal {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #ddd;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .offer-left {
+            background: #4a4a4a url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d0a5cad9-ba65-4ba0-9871-79470007ad4a.png') center bottom no-repeat;
+            background-size: cover;
+            border: 1px solid #6c6c6c;
+        }
+        .offer-left .title {
+            font-weight: 700;
+            font-size: 2.25rem;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+        }
+        .offer-left .offer-text {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 1.75rem;
+        }
+        .offer-left .btn-buy {
+            border: 1px solid #ccc;
+            background: transparent;
+            color: #ccc;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1.5rem;
+            width: 110px;
+        }
+        .offer-left .btn-buy:hover {
+            background: #333;
+            color: white;
+            border-color: white;
+        }
+        /* Right offer */
+        .offer-right {
+            background: #003340 url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b1031567-df55-4fcb-87a4-af499685e13c.png') center bottom no-repeat;
+            background-size: cover;
+            border: 1px solid #4b7b85;
+            color: #e6e6e6;
+            text-shadow: 0 0 6px rgba(0,0,0,0.6);
+        }
+        .offer-right .title-main {
+            font-weight: 700;
+            font-size: 2.25rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .countdown > div {
+            background: #0b4050;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            border-radius: 3px;
+            min-width: 65px;
+        }
+        .countdown .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.1rem;
+        }
+        .countdown .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            font-weight: 500;
+            color: #a8cacc;
+        }
+        .offer-right .btn-buy {
+            border: 1px solid #57adca;
+            background: transparent;
+            color: #57adca;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1.5rem;
+            width: 110px;
+        }
+        .offer-right .btn-buy:hover {
+            background: #57adca;
+            color: #002527;
+            border-color: #57adca;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/92547e36-df1d-4172-b4ee-015a1b667e88.png') center center/cover no-repeat;
+            color: white;
+            padding: 4rem 1rem 6rem;
+            position: relative;
+            text-align: center;
+        }
+        /* Overlay for subtle darkening */
+        .testimonials-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(28, 28, 28, 0.88);
+            z-index: 0;
+        }
+
+        .testimonials-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .section-subtitle {
+            display: inline-block;
+            background-color: #4e4e4e;
+            color: #eee;
+            font-size: 0.675rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 1rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+            user-select: none;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            user-select: none;
+        }
+        .testimonial-card {
+            background: white;
+            color: #444;
+            padding: 2rem 2.5rem 2rem;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgb(0 0 0 / 0.12);
+            text-align: left;
+            height: 100%;
+            position: relative;
+        }
+        .testimonial-card .stars {
+            color: #f7b731;
+            margin-bottom: 0.4rem;
+            font-size: 0; /* to remove spacing between inline SVG */
+        }
+        .testimonial-card .star {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+            fill: #f7b731;
+            filter: drop-shadow(0 0 0 #f7b731);
+        }
+        .testimonial-card .star.partial {
+            fill: url(#halfGradient);
+        }
+        .testimonial-card .client-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .testimonial-card .client-role {
+            font-size: 0.825rem;
+            font-weight: 500;
+            color: #777;
+            margin-bottom: 1rem;
+            user-select: none;
+        }
+        .testimonial-card .testimonial-text {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        .testimonial-card .quote-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 24px;
+            height: 24px;
+            color: #d2bfa1;
+            user-select: none;
+        }
+        /* Carousel arrows */
+        .testimonial-carousel-controls {
+            position: relative;
+            max-width: 1140px;
+            margin: 0 auto;
+            margin-top: -5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.75rem;
+        }
+        .arrow-btn {
+            border: 1px solid #926f4f;
+            color: #926f4f;
+            background: transparent;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            user-select: none;
+        }
+        .arrow-btn:hover {
+            background: #926f4f;
+            color: white;
+        }
+        .arrow-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .grayscale {
+        filter: grayscale(100%);
+        opacity: 0.6;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            .row-offers > .col-md-6 {
+                margin-bottom: 2rem;
+            }
+            .testimonial-carousel-controls {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar d-flex justify-content-between align-items-center px-4">
+    <div><i class="bi bi-telephone"></i> +380961381876</div>
+    <div class="text-uppercase">TAKE CARE OF YOUR Health 25% OFF USE CODE “ DOFIX03 ”</div>
+    <div class="d-flex gap-3">
+      <!-- <div>English <i class="bi bi-chevron-down"></i></div>
+      <div>USD <i class="bi bi-chevron-down"></i></div>
+      <div>Setting <i class="bi bi-chevron-down"></i></div> -->
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+     <div class="container">
+      <a class="navbar-brand fw-bold" href="#logo">Online</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse justify-content-center text-dark fw-bold" id="navbarNav">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Pages</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center gap-3 text-dark">
+          <i class="bi bi-person position-relative">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #b78b5c; color: white;">3</span>
+        </i>
+          <i class="bi bi-heart position-relative">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #b78b5c; color: white;">3</span>
+        </i>
+        <i class="bi bi-cart3 position-relative">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #b78b5c; color: white;">12</span>
+        </i>
+        <i class="bi bi-list fs-4"></i>
+      </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Text Content -->
+        <div class="col-md-6 text-center text-md-start">
+          
+          <h1 class="fw-bold display-5 mt-2">Elevate Your Home Aesthetics</h1>
+          <p class="text-muted mt-3">
+            A furniture e-commerce company operates in the digital space,
+            offering a wide range of furniture products for sale through an online platform.
+          </p>
+          
+        </div>
+
+        <!-- Image with circle background -->
+        <div class="col-md-6 text-center mt-4 mt-md-0">
+          <div class="hero-circle d-inline-block">
+            <img src="kursi.png" class="img-fluid" alt="Chair" style="max-height: 400px;">
+            <div class="circle-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+<section class="py-4 border-bottom">
+  <div class="container">
+    <div class="containers">
+    <div class="row text-center text-md-start">
+      <!-- Item 1 -->
+      <div class="col-6 col-md-3 d-flex align-items-start mb-3 mb-md-0">
+        <img src="1.png" alt="Free Delivery" width="40" class="me-3" style="color: #b78b5c;">
+        <div>
+          <strong class="d-block text-dark">Free Delivery</strong>
+          <small class="text-muted">Free shipping on all order</small>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="col-6 col-md-3 d-flex align-items-start mb-3 mb-md-0">
+        <img src="2.png" alt="Money Return" width="40" class="me-3">
+        <div>
+          <strong class="d-block text-dark">Money Return</strong>
+          <small class="text-muted">Back guarantee under 7 day</small>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="col-6 col-md-3 d-flex align-items-start mb-3 mb-md-0">
+        <img src="3.png" alt="Support 24/7" width="40" class="me-3">
+        <div>
+          <strong class="d-block text-dark">Online Support 24/7</strong>
+          <small class="text-muted">Support online 24 hours a day</small>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="col-6 col-md-3 d-flex align-items-start">
+        <img src="4.png" alt="Reliable" width="40" class="me-3">
+        <div>
+          <strong class="d-block text-dark">Reliable</strong>
+          <small class="text-muted">Trusted by 1000+ brands</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+    <!-- Promo Cards Section -->
+<section class="my-5">
+  <div class="container">
+    <div class="containers"></div>
+    <div class="row g-4">
+      <!-- Kotak 1 -->
+      <div class="col-md-6">
+        <div class="p-4 d-flex align-items-center justify-content-between" style="background-color: #eaf7fb; min-height: 250px;">
+          <!-- Teks -->
+          <div>
+            <p class="text-uppercase small mb-1" style="color: #b78b5c;">Get 30% Off</p>
+            <h4 class="mb-3" style="color: black;">Wicker Hanging Chairs</h4>
+            <a href="#" class="btn btn-brown">Buy Now<i class="bi bi-chevron-right ms-1"></i></a>
+          </div>
+          <!-- Gambar -->
+          <div>
+            <img src="kursi.png" class="img-fluid" style="max-height: 200px;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Kotak 2 -->
+      <div class="col-md-6">
+        <div class="p-4 d-flex align-items-center justify-content-between" style="background-color: #eaf7fb; min-height: 250px;">
+          <!-- Teks -->
+          <div>
+            <p class="text-uppercase small mb-1" style="color: #b78b5c;">Get 15% Off</p>
+            <h4 class="mb-3" style="color: black;">Brasslegged Armchair</h4>
+            <a href="#" class="btn btn-brown">Buy Now<i class="bi bi-chevron-right ms-1"></i></a>
+          </div>
+          <!-- Gambar -->
+          <div>
+            <img src="kursi.png" class="img-fluid" style="max-height: 200px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Product Section -->
+<section class="container py-5">
+  <div class="text-center mb-4">
+    <span class="newArrival">Top Sale</span>
+    <h3 class="fw-bold text-dark">Featured Product</h3>
+  </div>
+
+
+  <!-- Carousel -->
+  <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+          <!-- Product 1 -->
+          <div class="col text-center">
+            <div class="position-relative bg-light" style="background-color: #fdf8ef; padding: 40px 20px 20px;">
+              <span class="position-absolute top-0 start-1 translate-middle-y badge rounded-pill px-3 py-1" style="background-color: #b78b5c; color: white; font-size: 0.75rem; left: 10px; top: 10px;">10% OFF</span>
+              <img src="kursi.png" alt="Product 1" class="img-fluid mb-3" style="max-height: 160px;">
+            </div>
+            <h6 class="fw-bold mt-3 mb-1 text-dark">Leather Chair</h6>
+            <div class="text-warning mb-1">☆☆☆☆☆</div>
+            <p class="text-muted mb-0">USD 200.00</p>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="col text-center">
+            <div class="bg-light" style="background-color: #fdf8ef; padding: 40px 20px 20px;">
+              <img src="kursi.png" alt="Product 2" class="img-fluid mb-3" style="max-height: 160px;">
+            </div>
+            <h6 class="fw-bold mt-3 mb-1 text-dark">Chair Pillow</h6>
+            <div class="text-warning mb-1">☆☆☆☆☆</div>
+            <p class="text-muted mb-0">USD 49.00</p>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="col text-center">
+            <div class="position-relative bg-light" style="background-color: #fdf8ef; padding: 40px 20px 20px;">
+              <span class="position-absolute top-0 start-1 translate-middle-y badge rounded-pill px-3 py-1" style="background-color: #b78b5c; color: white; font-size: 0.75rem; left: 10px; top: 10px;">10% OFF</span>
+              <img src="kursi.png" alt="Product 3" class="img-fluid mb-3" style="max-height: 160px;">
+            </div>
+            <h6 class="fw-bold mt-3 mb-1 text-dark">Alexander Roll Arm Sofa</h6>
+            <div class="text-warning mb-1">☆☆☆☆☆</div>
+            <p class="text-muted mb-0">USD 150.00</p>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="col text-center">
+            <div class="bg-light" style="background-color: #fdf8ef; padding: 40px 20px 20px;">
+              <img src="kursi.png" alt="Product 4" class="img-fluid mb-3" style="max-height: 160px;">
+            </div>
+            <h6 class="fw-bold mt-3 mb-1 text-dark">Brasslegged Armchair</h6>
+            <div class="text-warning mb-1">☆☆☆☆☆</div>
+            <p class="text-muted mb-0">USD 150.00</p>
+          </div>
+          
+
+        </div>
+      </div>
+      <!-- Optional: Slide 2 -->
+      <div class="carousel-item">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+              <div class="col text-center">
+            <div class="bg-light" style="background-color: #fdf8ef; padding: 40px 20px 20px;">
+              <img src="kursi.png" alt="Product 4" class="img-fluid mb-3" style="max-height: 160px;">
+            </div>
+            <h6 class="fw-bold mt-3 mb-1 text-dark">Brasslegged Armchair</h6>
+            <div class="text-warning mb-1">☆☆☆☆☆</div>
+            <p class="text-muted mb-0">USD 150.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel controls -->
+    <!-- Promo Section -->
+<section class="container py-5">
+  <div class="row g-0 align-items-stretch">
+
+    
+    <!-- Kiri: Kotak Promo -->
+    <div class="col-md-6">
+      <div class="h-100 d-flex align-items-center justify-content-center" style="background-color: #f3e8d7;">
+        <div class="p-5 w-100 me-5 ms-5" style="background-color: #b78b5c;">
+          <div class="p-4 border border-white">
+            <small class="text-uppercase text-white fw-bold">HOT DEAL FURNITURE</small>
+            <h3 class="fw-bold text-white my-3">Live Furniture<br>Your Love</h3>
+            <a href="#" class="btn btn-light text-dark fw-semibold">Buy Now <i class="bi bi-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Kanan: Gambar & Promo -->
+    <div class="col-md-6 position-relative">
+      <div class="h-100 w-100">
+        <img src="room.jpg" class="img-fluid w-100 h-100" style="object-fit: cover; border-radius: 0;" alt="Room Image">
+        
+        <!-- Bubble promo -->
+        <div class="position-absolute translate-middle bg-white p-3 shadow rounded text-center" style="top: 50%; left: 50%; transform: translate(-50%, -50%) !important;">
+          <strong class="text-dark">Dining Table</strong>
+          <div class="text-warning mb-1">★★★★★</div>
+          <p class="mb-0 text-muted">USD 190.00</p>
+          
+          <!-- Segitiga bawah -->
+          <div style="width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid white; margin: 0 auto;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="container py-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+    <div>
+      <small class="newArrival">THIS MONTH</small>
+      <h3 class="fw-bold text-dark">Trendy Collection</h3>
+    </div>
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active fw-semibold text-dark bg-light border border-1 px-3" href="#">
+           <span class=" translate-middle badge" style="background-color: #b78b5c; color: white;">3</span>All Collection
+        </a>
+      </li>
+        <li class="nav-item"><a class="nav-link text-muted" href="#">New In</a></li>
+        <li class="nav-item"><a class="nav-link text-muted" href="#">Top Rated</a></li>
+        <li class="nav-item"><a class="nav-link text-muted" href="#">Tensing Items</a></li>
+    </ul>
+  </div>
+
+<section class="container py-5">
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+
+    <!-- Card 1 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="position-relative p-3" style="background-color: #f9f6ef;">
+                    <span class="position-absolute top-0 start-1 small px-2 py-1 rounded-pill text-white" style="background-color: #b78b5c; border-radius: 0%; color: white; font-size: 0.75rem; left: 10px; top: 10px;">10% OFF</span>
+          <img src="kursi.png" class="img-fluid text-dark" alt="Stylish Grey Chair">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Stylish Grey Chair</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 150.00</p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" alt="Chair Pillow">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Chair Pillow</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 190.00</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="position-relative p-3" style="background-color: #f9f6ef;">
+          <span class="position-absolute top-0 start-1 small px-2 py-1 rounded-pill text-white" style="background-color: #b78b5c; border-radius: 0%; color: white; font-size: 0.75rem; left: 10px; top: 10px;">15% OFF</span>
+          <img src="kursi.png" class="img-fluid" alt="Seater Gray Sofa">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Seater Gray Sofa</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 300.00</p>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" alt="Wooden Chair">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Wooden Chair</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 129.00</p>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="position-relative p-3" style="background-color: #f9f6ef;">
+          <span class="position-absolute top-0 start-1 small px-2 py-1 rounded-pill text-white" style="background-color: #b78b5c; border-radius: 0%; color: white; font-size: 0.75rem; left: 10px; top: 10px;">10% OFF</span>
+          <img src="kursi.png" class="img-fluid" alt="Alexander Sofa">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Alexander Sofa</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 150.00</p>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" alt="Stylish Grey Chair">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Stylish Grey Chair</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 150.00</p>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="position-relative p-3" style="background-color: #f9f6ef;">
+          <span class="position-absolute top-0 start-1 small px-2 py-1 rounded-pill text-white" style="background-color: #b78b5c; border-radius: 0%; color: white; font-size: 0.75rem; left: 10px; top: 10px;">NEW</span>
+          <img src="kursi.png" class="img-fluid" alt="Chair Nobody Armchair">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Chair Nobody Armchair</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 80.00</p>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="col">
+      <div class="text-center">
+        <div class="p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" alt="Realistic Sofa">
+        </div>
+        <h6 class="fw-semibold mt-3 mb-1 text-dark">Realistic Sofa</h6>
+        <div class="text-warning mb-1">
+          <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+        </div>
+        <p class="text-muted mb-0">USD 49.00</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="container px-5">
+        <div class="containers">
+        <div class="row justify-content-center row-offers g-4">
+            <div class="col-md-6 offer-left offer-card">
+                <div class="hot-deal">HOT DEAL FURNITURE</div>
+                <div class="title">Furniture Limit Offer</div>
+                <div class="offer-text">30% Off</div>
+                <button class="btn btn-buy" type="button">BUY NOW ></button>
+            </div>
+
+            <!-- Countdown -->
+            <div class="col-md-6 offer-right offer-card d-flex flex-column align-items-center">
+                <div class="hot-deal">HOT DEAL FURNITURE</div>
+                <div class="title-main">Deals OF The Week</div>
+                <div class="countdown">
+                    <div>
+                        <div class="number">177</div>
+                        <div class="label">DAYS</div>
+                    </div>
+                    <div>
+                        <div class="number">15</div>
+                        <div class="label">HRS</div>
+                    </div>
+                    <div>
+                        <div class="number">26</div>
+                        <div class="label">MINS</div>
+                    </div>
+                    <div>
+                        <div class="number">57</div>
+                        <div class="label">SECS</div>
+                    </div>
+                </div>
+                <button class="btn btn-buy" type="button">BUY NOW ></button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="testimonials-wrapper">
+            <div class="section-subtitle rounded-0">TESTIMONIALS</div>
+            <h2 class="section-title">Client Feedback</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 rounded-0">
+                        <div class="stars" aria-label="4 out of 5 stars">
+                            <!-- 4 filled stars, 1 empty star -->
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true" style="fill:#ddd;"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                        </div>
+                        <div class="client-name">Ralph Edwards</div>
+                        <div class="client-role">UI/UX Designer</div>
+                        <div class="testimonial-text">
+                            Lorem ipsum dolor sit amet consectetur the adipiscing elit vestibulum viverra eget felis interdum fusce odio lacus.
+                        </div>
+                        <svg class="quote-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            viewBox="0 0 24 24" aria-hidden="true"><path d="M18 14v-4a6 6 0 0 0-11.4-2M6 18h12v-4a6 6 0 0 0-11.4-2" /></svg>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 rounded-0">
+                        <div class="stars" aria-label="4 out of 5 stars">
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true" style="fill:#ddd;"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                        </div>
+                        <div class="client-name">Jerome Bell</div>
+                        <div class="client-role">Web Designer</div>
+                        <div class="testimonial-text">
+                            Lorem ipsum dolor sit amet consectetur the adipiscing elit vestibulum viverra eget felis interdum fusce odio lacus.
+                        </div>
+                        <svg class="quote-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            viewBox="0 0 24 24" aria-hidden="true"><path d="M18 14v-4a6 6 0 0 0-11.4-2M6 18h12v-4a6 6 0 0 0-11.4-2" /></svg>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 rounded-0">
+                        <div class="stars" aria-label="4 out of 5 stars">
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true" style="fill:#ddd;"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                        </div>
+                        <div class="client-name">Annette Black</div>
+                        <div class="client-role">Dog Trainer</div>
+                        <div class="testimonial-text">
+                            Lorem ipsum dolor sit amet consectetur the adipiscing elit vestibulum viverra eget felis interdum fusce odio lacus.
+                        </div>
+                        <svg class="quote-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            viewBox="0 0 24 24" aria-hidden="true"><path d="M18 14v-4a6 6 0 0 0-11.4-2M6 18h12v-4a6 6 0 0 0-11.4-2" /></svg>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 rounded-0">
+                        <div class="stars" aria-label="4 out of 5 stars">
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true" style="fill:#ddd;"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                        </div>
+                        <div class="client-name">Annette Black</div>
+                        <div class="client-role">Dog Trainer</div>
+                        <div class="testimonial-text">
+                            Lorem ipsum dolor sit amet consectetur the adipiscing elit vestibulum viverra eget felis interdum fusce odio lacus.
+                        </div>
+                        <svg class="quote-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            viewBox="0 0 24 24" aria-hidden="true"><path d="M18 14v-4a6 6 0 0 0-11.4-2M6 18h12v-4a6 6 0 0 0-11.4-2" /></svg>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 rounded-0">
+                        <div class="stars" aria-label="4 out of 5 stars">
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true" style="fill:#ddd;"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                        </div>
+                        <div class="client-name">Annette Black</div>
+                        <div class="client-role">Dog Trainer</div>
+                        <div class="testimonial-text">
+                            Lorem ipsum dolor sit amet consectetur the adipiscing elit vestibulum viverra eget felis interdum fusce odio lacus.
+                        </div>
+                        <svg class="quote-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            viewBox="0 0 24 24" aria-hidden="true"><path d="M18 14v-4a6 6 0 0 0-11.4-2M6 18h12v-4a6 6 0 0 0-11.4-2" /></svg>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 rounded-0">
+                        <div class="stars" aria-label="4 out of 5 stars">
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                            <svg class="star" viewBox="0 0 20 20" aria-hidden="true" style="fill:#ddd;"><path d="M10 1.5l2.59 5.25 5.8.84-4.19 4.08.99 5.78L10 15.27 5.81 17.45l.99-5.78-4.19-4.08 5.8-.84L10 1.5z" /></svg>
+                        </div>
+                        <div class="client-name">Annette Black</div>
+                        <div class="client-role">Dog Trainer</div>
+                        <div class="testimonial-text">
+                            Lorem ipsum dolor sit amet consectetur the adipiscing elit vestibulum viverra eget felis interdum fusce odio lacus.
+                        </div>
+                        <svg class="quote-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            viewBox="0 0 24 24" aria-hidden="true"><path d="M18 14v-4a6 6 0 0 0-11.4-2M6 18h12v-4a6 6 0 0 0-11.4-2" /></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-carousel-controls mt-4">
+                <button class="arrow-btn" aria-label="Previous testimonial">
+                    <span class="arrow-icon">←</span>
+                </button>
+                <button class="arrow-btn" aria-label="Next testimonial">
+                    <span class="arrow-icon">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+<!-- Best Sellers -->
+<section class="container py-5">
+  <div class="mb-4">
+    <small class="newArrival">This Week</small>
+    <h3 class="fw-bold text-dark">Best Sellers</h3>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
+
+    <!-- Product Card -->
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <!-- Product Image Background -->
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Stylish Grey Chair">
+        </div>
+        <!-- Description -->
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Stylish Grey Chair</p>
+          <p style="color: #b78b5c;">USD 66.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat for 7 more items -->
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Chair Pillow">
+        </div>
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Chair Pillow</p>
+          <p style="color: #b78b5c;">USD 77.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Alexander Roll">
+        </div>
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Alexander Roll</p>
+          <p style="color: #b78b5c;">USD 66.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Wooden Chair">
+        </div>
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Wooden Chair</p>
+          <p style="color: #b78b5c;">USD 66.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Black Leather">
+        </div>
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Black Leather</p>
+          <p style="color: #b78b5c;">USD 66.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Soft Cushion">
+        </div>
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Soft Cushion</p>
+          <p style="color: #b78b5c;">USD 66.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Brown Armchair">
+        </div>
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Brown Armchair</p>
+          <p style="color: #b78b5c;">USD 66.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-light p-3" style="background-color: #f9f6ef;">
+          <img src="kursi.png" class="img-fluid" style="max-width: 80px;" alt="Minimalist Chair">
+        </div>
+        <div>
+          <p class="fw-semibold mb-0 text-dark">Minimalist Chair</p>
+          <p style="color: #b78b5c;">USD 66.00</p>
+          <div class="text-warning">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="py-5" style="background-color: #f9f6ef;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <small class="newArrival">READ BLOG</small>
+      <h2 class="fw-bold mt-3" style="color: #222;">Recent Blog</h2>
+    </div>
+
+    <div class="row justify-content-center g-4">
+      <!-- Blog Card 1 -->
+      <div class="col-lg-6">
+        <div class="d-flex justify-content-between bg-white p-4 shadow-sm" style="border-radius: 4px;">
+          <div class="d-flex flex-column justify-content-between" style="flex: 1;">
+            <div>
+              <span class="badge rounded-pill px-3 py-1 mb-2" style="background-color: #f1e3d2; color: #b78b5c;">Chair Design</span>
+              <p class="mb-1 text-muted" style="font-size: 14px;">By Alex Manie <span class="ms-2">07 Jan, 2024</span></p>
+              <h3 class="mt-2 mb-3" style="color: #222;">Arrangement That’s Nearly Perfect.</h3>
+            </div>
+            <div>
+              <button class="btn p-0" style="background-color: #f2e5d4; width: 48px; height: 48px; border-radius: 50%;">
+                <span class="fs-5" style="color: #b78b5c;">➜</span>
+              </button>
+            </div>
+          </div>
+          <div style="width: 60%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 0px;">
+            <img src="room.jpg" alt="Sofa" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+      </div>
+
+      <!-- Blog Card 2 -->
+      <div class="col-lg-6">
+        <div class="d-flex justify-content-between bg-white p-4 shadow-sm" style="border-radius: 4px;">
+          <div class="d-flex flex-column justify-content-between" style="flex: 1;">
+            <div>
+              <span class="badge px-3 py-1 mb-2" style="background-color: #f1e3d2; color: #b78b5c;">Sofa Design</span>
+              <p class="mb-1 text-muted" style="font-size: 14px;">By Alex Manie <span class="ms-2">07 Jan, 2024</span></p>
+              <h3 class="mt-2 mb-3" style="color: #222;">Eworkstation Arrangement That’s</h3>
+            </div>
+            <div>
+              <button class="btn p-0" style="background-color: #f2e5d4; width: 48px; height: 48px; border-radius: 50%;">
+                <span class="fs-5" style="color: #b78b5c;">➜</span>
+              </button>
+            </div>
+          </div>
+          <div style="width: 60%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 0px;">
+            <img src="room.jpg" alt="Sofa" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Promo Boxes -->
+<section class="py-5">
+  <div class="container px-5"> <!-- px-3 memberi margin horizontal -->
+    <div class="row g-5 justify-content-center">
+
+      <!-- Box 1 -->
+      <div class="col-12 col-md-4 d-5">
+        <div class="p-5 text-start w-500 d-flex flex-column justify-content-between rounded-0"
+            style="background-color: #d6f3fb; height: 300px; border-radius: 8px;">
+          <div>
+            <h4 class="mb-2 text-dark">Exclusive offers for you</h4>
+            <p class="text-muted">Get weekly deals, valuable health information and more.</p>
+          </div>
+          <a href="#" class="btn btn-outline-dark w-fit mt-auto">SIGN UP <i class="bi bi-chevron-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Box 2 -->
+      <div class="col-12 col-md-4 d-flex">
+        <div class="p-5 text-start w-100 d-flex flex-column justify-content-between rounded-0"
+             style="background-color: #f8ffd7; height: 300px; border-radius: 8px;">
+          <div>
+            <h4 class="mb-2 text-dark">Join Our Community</h4>
+            <p class="text-muted">Get weekly deals, valuable health information and more.</p>
+          </div>
+          <a href="#" class="btn btn-outline-dark w-fit mt-auto">JOIN FREE NOW <i class="bi bi-chevron-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Box 3 -->
+      <div class="col-12 col-md-4 d-flex">
+        <div class="p-5 text-start w-100 d-flex flex-column justify-content-between rounded-0"
+             style="background-color: #ffe9ec; height: 300px; border-radius: 8px;">
+          <div>
+            <h4 class="mb-2 text-dark">Get our FREE app Now!</h4>
+            <p class="text-muted">Get weekly deals, valuable health information and more.</p>
+          </div>
+          <div class="d-flex gap-2 mt-auto">
+            <img src="playstore.png" alt="Google Play" height="50">
+            <img src="appstore.png" alt="App Store" height="50">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Brand Logos -->
+<section class="py-5 bg-white">
+  <div class="container">
+     <div class="containers">
+    <div class="row justify-content-center align-items-center g-4 text-center">
+      
+      <!-- Logo 1 -->
+      <div class="col-6 col-sm-4 col-md-2">
+        <img src="logo.png" alt="Award 1" class="img-fluid grayscale" style="max-height: 80px;">
+      </div>
+
+      <!-- Logo 2 -->
+      <div class="col-6 col-sm-4 col-md-2">
+        <img src="logo.png" alt="Award 2" class="img-fluid grayscale" style="max-height: 80px;">
+      </div>
+
+      <!-- Logo 3 -->
+      <div class="col-6 col-sm-4 col-md-2">
+        <img src="logo.png" alt="Award 3" class="img-fluid grayscale" style="max-height: 80px;">
+      </div>
+
+      <!-- Logo 4 -->
+      <div class="col-6 col-sm-4 col-md-2">
+        <img src="logo.png" alt="Award 4" class="img-fluid grayscale" style="max-height: 80px;">
+      </div>
+
+      <!-- Logo 5 -->
+      <div class="col-6 col-sm-4 col-md-2">
+        <img src="logo.png" alt="Award 5" class="img-fluid grayscale" style="max-height: 80px;">
+      </div>
+
+      <div class="col-6 col-sm-4 col-md-2">
+        <img src="logo.png" alt="Award 6" class="img-fluid grayscale" style="max-height: 80px;">
+      </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-5">
+  <div class="container">
+    <div class="row gy-5">
+      
+      <!-- Logo + Deskripsi -->
+      <div class="col-md-3">
+        <img src="logo.jpg" alt="Logo" class="mb-3 img-fluid" style="max-width: 140px;">
+        <p class="text-light">It helps designers plan out where the content will sit, the content to be written and approved.</p>
+        <div class="d-flex gap-3">
+          <a href="#"><i class="bi bi-facebook text-white"></i></a>
+          <a href="#"><i class="bi bi-twitter text-white"></i></a>
+          <a href="#"><i class="bi bi-linkedin text-white"></i></a>
+          <a href="#"><i class="bi bi-instagram text-white"></i></a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="col-md-2">
+        <h6 class="fw-semibold">Services</h6>
+        <ul class="list-unstyled small text-muted">
+          <li><a href="#" class="text-decoration-none text-white">Log In</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Wishlist</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Return Policy</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Privacy policy</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Shopping FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="col-md-2">
+        <h6 class="fw-semibold">Company</h6>
+        <ul class="list-unstyled small text-muted">
+          <li><a href="#" class="text-decoration-none text-white">Home</a></li>
+          <li><a href="#" class="text-decoration-none text-white">About us</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Pages</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Blog</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Contact us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-5">
+        <h6 class="fw-semibold">Contact</h6>
+        <p class="text-light mb-1">4517 Washington Ave.<br>Manchester, Kentucky 39495</p>
+
+        <div class="d-flex align-items-center mb-2">
+          <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 30px; height: 30px;">
+            <i class="bi bi-geo-alt text-white"></i>
+          </div>
+          <span class="small">711–2880 Nulla St.</span>
+        </div>
+
+        <div class="d-flex align-items-center mb-5">
+          <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 30px; height: 30px; background-color: #b78b5c;">
+            <i class="bi bi-telephone text-white"></i>
+          </div>
+          <div>
+            <span class="small d-block text-light ">+964 742 44 763</span>
+            <small class="text-light">Mon - Sat: 9 AM - 5 PM</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Garis -->
+    <hr class="border-light my-4">
+
+    <!-- Bottom -->
+    <div class="d-md-flex justify-content-between align-items-center text-center pb-4">
+      <div class="text-light small mb-2 mb-md-0">© All Copyright 2024 by Online</div>
+      <div class="d-flex gap-2">
+        <img src="payoneer.png" height="30" alt="Payoneer">
+        <img src="mastercard.png" height="30" alt="MasterCard">
+        <img src="paypal.png" height="30" alt="PayPal">
+      </div>
+      <div class="small text-white">
+        <a href="#" class="text-white text-decoration-none">Terms & Condition</a> |
+        <a href="#" class="text-white text-decoration-none">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
